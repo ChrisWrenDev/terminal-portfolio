@@ -1,0 +1,69 @@
+:root {
+  /* Backgrounds */
+  --color-canvas-default: #0d1117;
+  --color-canvas-overlay: #161b22;
+  --color-canvas-inset: #010409;
+  --color-canvas-subtle: #161b22;
+
+  /* Borders */
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+  --color-border-subtle: #6e7681;
+
+  /* Text */
+  --color-fg-default: #c9d1d9;
+  --color-fg-muted: #8b949e;
+  --color-fg-subtle: #6e7681;
+  --color-fg-on-emphasis: #ffffff;
+
+  /* Primary Button */
+  --color-btn-primary-bg: #238636;
+  --color-btn-primary-hover-bg: #2ea043;
+  --color-btn-primary-border: #1f6b29;
+  --color-btn-primary-hover-border: #2c974b;
+  --color-btn-primary-text: #ffffff;
+
+  /* Secondary Button */
+  --color-btn-secondary-bg: #30363d;
+  --color-btn-secondary-hover-bg: #484f58;
+  --color-btn-secondary-border: #6e7681;
+  --color-btn-secondary-hover-border: #8b949e;
+  --color-btn-secondary-text: #c9d1d9;
+
+  /* Accent Colors */
+  --color-accent-fg: #58a6ff;
+  --color-accent-emphasis: #1f6feb;
+
+  /* Links */
+  --color-link-fg: #58a6ff;
+  --color-link-hover-fg: #1f6feb;
+
+  /* State */
+  --color-success-fg: #56d364;
+  --color-warning-fg: #e3b341;
+  --color-danger-fg: #f85149;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  padding: 1.5rem 2rem;
+  min-height: 99%;
+  width: 100%;
+  min-width: 550px;
+  color: var(--color-fg-default);
+  background: var(--color-canvas-default);
+  font-family: cursor, monospace;
+  overflow-x: hidden;
+}
