@@ -1,5 +1,5 @@
+const html = document.querySelector("html");
 const terminal = document.getElementById("terminal");
-// let before = document.getElementById("before");
 const command = document.getElementById("command");
 const textarea = document.getElementById("textarea");
 const liner = document.getElementById("liner");
@@ -36,13 +36,13 @@ function moveCursorRight() {
   }
 }
 
-function navigateHistory(direction){
+function navigateHistory(direction) {
   if (direction === -1 && commandIndex > 0) {
     commandIndex--;
   } else if (direction === 1 && commandIndex < commandHistory.length) {
     commandIndex++;
   }
-  
+
   textarea.value = commandHistory[commandIndex] || "";
   typer.innerHTML = textarea.value;
 }
@@ -78,31 +78,73 @@ function output(lines, style, time) {
       // Keep at bottom of screen
       window.scrollTo(0, document.body.offsetHeight);
     }, index * time);
-  })
+  });
 }
 
+function getThemeSetting() {
+  const localStorageTheme = localStorage.getItem("theme");
+
+  if (localStorageTheme !== null) {
+    return localStorageTheme;
+  }
+
+  const systemSettingDark = window.matchMedia("(prefers-color-scheme: light)");
+
+  if (systemSettingDark.matches) {
+    return "light";
+  }
+
+  return "dark";
+}
+
+let currentThemeSetting = getThemeSetting();
+
 const commandMap = {
-  "help": help,
-  "about": about,
-  "blog": blog,
-  "social": social,
-  "projects": projects,
-  "contact": contact,
-  "clear": () => { terminal.innerHTML = ""; output(banner, "text-secondary", 80);},
-  "banner": () => output(banner, "text-secondary", 80),
-  "history": () => { output(["<br>", ...commandHistory, "<br>"], "text-secondary ml-20", 80); },
-  "linkedin": () => { output(["Opening LinkedIn..."], "text-secondary", 0); openLink(linkedin); },
-  "github": () => { output(["Opening GitHub..."], "text-secondary", 0); openLink(github); }
+  help: help,
+  about: about,
+  blog: blog,
+  social: social,
+  projects: projects,
+  contact: contact,
+  clear: () => {
+    terminal.innerHTML = "";
+    output(banner, "text-secondary", 80);
+  },
+  banner: () => output(banner, "text-secondary", 80),
+  history: () => {
+    output(["<br>", ...commandHistory, "<br>"], "text-secondary ml-20", 80);
+  },
+  linkedin: () => {
+    output(["Opening LinkedIn..."], "text-secondary", 0);
+    openLink(linkedin);
+  },
+  github: () => {
+    output(["Opening GitHub..."], "text-secondary", 0);
+    openLink(github);
+  },
+  theme: () => {
+    const newTheme = currentThemeSetting === "light" ? "dark" : "light";
+
+    html.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    currentThemeSetting = newTheme;
+
+    output(["<br>", `Change to ${newTheme} theme`, "<br>"], "", 80);
+  },
 };
 
 function commander(cmd) {
   const command = commandMap[cmd];
-  
-  if(cmd !== "clear"){
+
+  if (cmd !== "clear") {
     // Print current command
-    output(['<span class="font-semibold">chriswren:~$</span> ' + cmd], "animate-none", 0);
+    output(
+      ['<span class="font-semibold">chriswren:~$</span> ' + cmd],
+      "animate-none",
+      0,
+    );
   }
-  
+
   if (!command) {
     output(["<br>", notFound, "<br>"], "ml-20", 100);
     return;
@@ -113,11 +155,10 @@ function commander(cmd) {
   } else {
     output(command, "animate-type text-secondary ml-20", 80);
   }
-
 }
 
-function keyAction(key){
-  switch(key){
+function keyAction(key) {
+  switch (key) {
     case enter:
       enterCmd();
       break;
@@ -144,17 +185,17 @@ window.onload = () => {
   cursor.style.left = "0px";
   output(banner, "", 80);
   textarea.focus();
-}
+  html.setAttribute("data-theme", currentThemeSetting);
+};
 
 window.addEventListener("keyup", (event) => {
-  keyAction(event.key)
+  keyAction(event.key);
 });
 
 command.addEventListener("click", () => {
   textarea.focus();
-})
+});
 
 textarea.addEventListener("input", () => {
   updateTyper(textarea.value);
 });
-

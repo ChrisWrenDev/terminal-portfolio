@@ -48,16 +48,19 @@ const help = [
   '<span class="text-primary">social</span>         View social accounts',
   '<span class="text-primary">history</span>        View command history',
   '<span class="text-primary">contact</span>        View contact details',
+  '<span class="text-primary">theme</span>          Toggle between themes',
   '<span class="text-primary">help</span>           View list of commands',
   '<span class="text-primary">clear</span>          Clear terminal',
   "<br>",
 ];
 
 const banner = [
-  '<br>',
+  "<br>",
   '<span class="text-secondary">Welcome to my terminal portfolio.</span>',
   '<span class="text-secondary">For a list of available commands, type</span> <span class="text-primary">\'help\'</span><span class="text-grey">.</span>',
-  '<br>',
+  "<br>",
 ];
 
-const notFound = '<span class="text-secondary">Command not found. For a list of commands, type <span class="text-primary">\'help\'</span>.</span>';
+const notFound =
+  '<span class="text-secondary">Command not found. For a list of commands, type <span class="text-primary">\'help\'</span>.</span>';
+
