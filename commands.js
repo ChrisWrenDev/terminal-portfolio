@@ -1,5 +1,6 @@
-const linkedin = "https://www.linkedin.com/in/chris-wren/";
-const github = "https://github.com/ChrisWrenDev";
+const linkedinLink = "https://www.linkedin.com/in/chris-wren/";
+const githubLink = "https://github.com/ChrisWrenDev";
+const blogLink = "/blog";
 const email = "mailto:chriswrendeveloper@gmail.com";
 
 const about = [
@@ -21,11 +22,11 @@ const projects = ["<br>", "Still working on it...", "<br>"];
 const social = [
   "<br>",
   'linkedin       <a href="' +
-    linkedin +
+    linkedinLink +
     '" target="_blank">linkedin/chris-wren' +
     "</a>",
   'github       <a href="' +
-    github +
+    githubLink +
     '" target="_blank">github/ChrisWrenDev' +
     "</a>",
   "<br>",
@@ -51,6 +52,7 @@ const help = [
   '<span class="text-primary">theme</span>          Toggle between themes',
   '<span class="text-primary">help</span>           View list of commands',
   '<span class="text-primary">clear</span>          Clear terminal',
+  '<span class="text-primary">exit</span>           Exit terminal',
   "<br>",
 ];
 
@@ -63,4 +65,3 @@ const banner = [
 
 const notFound =
   '<span class="text-secondary">Command not found. For a list of commands, type <span class="text-primary">\'help\'</span>.</span>';
-

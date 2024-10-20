@@ -1,4 +1,7 @@
 const html = document.querySelector("html");
+const content = document.getElementById("content");
+const toggle = document.getElementById("toggle");
+const terminalButton = document.getElementById("terminalButton");
 const terminal = document.getElementById("terminal");
 const command = document.getElementById("command");
 const textarea = document.getElementById("textarea");
@@ -73,7 +76,7 @@ function output(lines, style, time) {
       // Add element to terminal output
       const element = document.createElement("p");
       element.innerHTML = string;
-      element.className = style;
+      element.className = `terminal-text ${style}`;
       terminal.appendChild(element);
       // Keep at bottom of screen
       window.scrollTo(0, document.body.offsetHeight);
@@ -83,24 +86,46 @@ function output(lines, style, time) {
 
 function getThemeSetting() {
   const localStorageTheme = localStorage.getItem("theme");
-
-  if (localStorageTheme !== null) {
-    return localStorageTheme;
-  }
-
   const systemSettingDark = window.matchMedia("(prefers-color-scheme: light)");
 
-  if (systemSettingDark.matches) {
-    return "light";
-  }
-
+  if (localStorageTheme !== null) return localStorageTheme;
+  if (systemSettingDark.matches) return "light";
   return "dark";
 }
 
-let currentThemeSetting = getThemeSetting();
+let currentTheme = getThemeSetting();
+
+function updateTheme() {
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+
+  html.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+  toggle.checked = newTheme === "dark";
+  currentTheme = newTheme;
+}
+
+let toggleCount = 0;
+
+function toggleTerminal() {
+  if (terminal.style.display === "none") {
+    terminal.style.display = "block";
+    command.style.display = "block";
+    content.style.display = "none";
+
+    cursor.style.left = "0px";
+    output(banner, "", 80);
+    textarea.focus();
+  } else {
+    terminal.style.display = "none";
+    command.style.display = "none";
+    content.style.display = "block";
+  }
+}
 
 const commandMap = {
   help: help,
+  man: help,
+  ls: help,
   about: about,
   blog: blog,
   social: social,
@@ -114,29 +139,33 @@ const commandMap = {
   history: () => {
     output(["<br>", ...commandHistory, "<br>"], "text-secondary ml-20", 80);
   },
+  blog2: () => {
+    output(["Opening Blog..."], "text-secondary", 0);
+    openLink(blogLink);
+  },
   linkedin: () => {
     output(["Opening LinkedIn..."], "text-secondary", 0);
-    openLink(linkedin);
+    openLink(linkedinLink);
   },
   github: () => {
     output(["Opening GitHub..."], "text-secondary", 0);
-    openLink(github);
+    openLink(githubLink);
   },
   theme: () => {
-    const newTheme = currentThemeSetting === "light" ? "dark" : "light";
-
-    html.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-    currentThemeSetting = newTheme;
-
-    output(["<br>", `Change to ${newTheme} theme`, "<br>"], "", 80);
+    updateTheme();
+    output(["<br>", `Changed to ${currentTheme} theme`, "<br>"], "", 80);
+  },
+  exit: () => {
+    toggleTerminal();
+    terminal.innerHTML = "";
+    commandHistory = [];
   },
 };
 
 function commander(cmd) {
   const command = commandMap[cmd];
 
-  if (cmd !== "clear") {
+  if (cmd !== "clear" && cmd !== "exit") {
     // Print current command
     output(
       ['<span class="font-semibold">chriswren:~$</span> ' + cmd],
@@ -182,10 +211,8 @@ textarea.value = "";
 typer.innerHTML = textarea.value;
 
 window.onload = () => {
-  cursor.style.left = "0px";
-  output(banner, "", 80);
-  textarea.focus();
-  html.setAttribute("data-theme", currentThemeSetting);
+  html.setAttribute("data-theme", currentTheme);
+  toggle.checked = currentTheme === "dark";
 };
 
 window.addEventListener("keyup", (event) => {
@@ -198,4 +225,12 @@ command.addEventListener("click", () => {
 
 textarea.addEventListener("input", () => {
   updateTyper(textarea.value);
+});
+
+toggle.addEventListener("change", () => {
+  updateTheme();
+});
+
+terminalButton.addEventListener("click", () => {
+  toggleTerminal();
 });
