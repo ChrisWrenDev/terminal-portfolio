@@ -1,69 +1,175 @@
 :root {
-  /* Backgrounds */
-  --color-canvas-default: #0d1117;
-  --color-canvas-overlay: #161b22;
-  --color-canvas-inset: #010409;
-  --color-canvas-subtle: #161b22;
+  --primary-color: #1a95e0;
+  --secondary-color: #727578;
+  --error-color: #d20962;
+  --background-color: #fff;
+  --font-color: #151515;
+  --invert-font-color: #fff;
+  --font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace, serif;
 
-  /* Borders */
-  --color-border-default: #30363d;
-  --color-border-muted: #21262d;
-  --color-border-subtle: #6e7681;
+  /* Font and Spacing Variables */
+  --font-size-base: 100%;
+  --font-line-height: 1.6;
+  --spacing-base: 2px;
 
-  /* Text */
-  --color-fg-default: #c9d1d9;
-  --color-fg-muted: #8b949e;
-  --color-fg-subtle: #6e7681;
-  --color-fg-on-emphasis: #ffffff;
-
-  /* Primary Button */
-  --color-btn-primary-bg: #238636;
-  --color-btn-primary-hover-bg: #2ea043;
-  --color-btn-primary-border: #1f6b29;
-  --color-btn-primary-hover-border: #2c974b;
-  --color-btn-primary-text: #ffffff;
-
-  /* Secondary Button */
-  --color-btn-secondary-bg: #30363d;
-  --color-btn-secondary-hover-bg: #484f58;
-  --color-btn-secondary-border: #6e7681;
-  --color-btn-secondary-hover-border: #8b949e;
-  --color-btn-secondary-text: #c9d1d9;
-
-  /* Accent Colors */
-  --color-accent-fg: #58a6ff;
-  --color-accent-emphasis: #1f6feb;
-
-  /* Links */
-  --color-link-fg: #58a6ff;
-  --color-link-hover-fg: #1f6feb;
-
-  /* State */
-  --color-success-fg: #56d364;
-  --color-warning-fg: #e3b341;
-  --color-danger-fg: #f85149;
+  /* Transition */
+  --transition-base: 0.3s ease;
 }
 
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
+}
+
+* {
   margin: 0;
-  padding: 0;
-  box-sizing: inherit;
 }
 
 html {
-  box-sizing: border-box;
-  font-size: 62.5%;
+  font-size: var(--font-size-base);
+  font-family: var(--font-stack);
+  line-height: var(--font-line-height);
 }
 
 body {
-  padding: 1.5rem 2rem;
-  min-height: 99%;
-  width: 100%;
-  min-width: 550px;
-  color: var(--color-fg-default);
-  background: var(--color-canvas-default);
-  font-family: cursor, monospace;
-  overflow-x: hidden;
+  color: var(--font-color);
+  letter-spacing: 0.05em;
+  padding: 16px 20px;
+  height: 100vh;
+  width: 100vw;
+  background: var(--background-color);
+}
+
+a {
+  cursor: pointer;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+a:hover,
+a:focus {
+  background-color: var(--primary-color);
+  color: var(--invert-font-color);
+  outline: none;
+}
+
+textarea {
+  font: inherit;
+}
+
+p {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+
+::selection {
+  color: var(--invert-font-color);
+  background-color: var(--primary-color);
+}
+
+/* Typography */
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.text-error {
+  color: var(--error-color);
+}
+
+.text-grey {
+  color: var(--font-color);
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* Utilities */
+
+.ml-20 {
+  margin-left: calc(var(--spacing-base) * 10);
+}
+
+.mb-20 {
+  margin-bottom: calc(var(--spacing-base) * 10);
+}
+
+.hidden {
+  left: -1000px;
+  position: absolute;
+}
+
+/* Animations */
+
+.animate-none {
+  animation: typing 0 steps(30, end);
+}
+
+.animate-type {
+  animation: typing 0.5s steps(30, end);
+  animation-timing-function: ease-in-out;
+}
+
+.animate-blink {
+  animation: blink 1s linear infinite;
+}
+
+.animate-reveal {
+  animation: reveal 0.5s ease forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ------- */
+
+.cursor {
+  color: var(--primary-color);
+  background-color: var(--primary-color);
+  text-indent: -5px;
+  text-decoration: blink;
+  display: inline-block;
+  height: 18px;
+  width: 6px;
+  position: relative;
+  top: 4px;
+  overflow: hidden;
 }

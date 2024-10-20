@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,11 +8,17 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   </head>
   <body>
-    <h1>Portfolio</h1>
-    <div id="terminal-output"></div>
-    <div id="command-line">
-      <textarea type="text" id="command-line__input"></textarea>
+    <div id="terminal"></div>
+    <div id="command" class="mb-20">
+      <textarea type="text" id="textarea" class="hidden" autofocus></textarea>
+      <div id="liner" class="animate-reveal">
+        <p class="font-semibold">
+          chriswren:~$ <span id="typer" class="font-normal"></span
+          ><b class="cursor animate-blink" id="cursor">█</b>
+        </p>
+      </div>
     </div>
-    <script src="main.js"></script>
+    <script src="./commands.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>
