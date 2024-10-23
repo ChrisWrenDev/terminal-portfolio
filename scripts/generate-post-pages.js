@@ -2,8 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const markdown = require("markdown-it")();
 
-const contentDir = "../content";
-const postsDir = "../blog/posts";
+const contentDir = path.join(__dirname, "../", "content");
+const postsDir = path.join(__dirname, "../", "blog", "posts");
 
 if (!fs.existsSync(postsDir)) {
   fs.mkdirSync(postsDir, { recursive: true });

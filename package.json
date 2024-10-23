@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "blog": ""
+    "build-posts": "node ./scripts/generate-post-pages.js",
+    "build-blog": "node ./scripts/generate-blog-index.js"
   },
   "author": "chris wren",
   "license": "ISC",

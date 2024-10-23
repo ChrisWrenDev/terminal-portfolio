@@ -1,7 +1,8 @@
 const fs = require("fs");
+const path = require("path");
 
-const postDir = "../blog/posts";
-const blogIndexFile = "../blog/index.html";
+const postDir = path.join(__dirname, "../", "blog", "posts");
+const blogIndexFile = path.join(__dirname, "../", "blog", "index.html");
 
 if (!fs.existsSync(postDir)) {
   fs.mkdirSync(postDir, { recursive: true });
