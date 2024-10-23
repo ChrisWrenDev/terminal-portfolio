@@ -1,0 +1,14 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "blog": ""
+  },
+  "author": "chris wren",
+  "license": "ISC",
+  "dependencies": {
+    "markdown-it": "^14.1.0"
+  }
+}
