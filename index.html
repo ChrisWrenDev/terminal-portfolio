@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chris Wren | Portfolio</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./styles/style.css"
+    />
+  </head>
+  <body>
+    <div id="content" class="content">
+      <header>
+        <nav id="menu" class="menu">
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/blog">Blog</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="toggle-container">
+          <input type="checkbox" id="toggle" class="toggle-checkbox" />
+          <label for="toggle" class="toggle-label">
+            <div class="toggle-inner"></div>
+          </label>
+        </div>
+      </header>
+      <section id="about">
+        <h2>About</h2>
+        <p>Hey, I'm Chris Wren!👋"</p>
+        <p>
+          I'm a Full Stack Engineer over at BT, working on the ee.co.uk website
+          - you know, the site everyone in the UK relies on to buy their phone
+          and broadband. I like to think of myself as a digital handyman,
+          building stuff that actually works (most of the time 😅).
+        </p>
+        <br />
+        <p>🏢 Day Job: Full Stack Engineer at BT</p>
+        <p>
+          💻 Main Gig: Building and maintaining the EE website checkout, making
+          sure it doesn't break when you’re paying for your next iphone.
+        </p>
+        <p>
+          🏆 Superpower: Breaking things and then fixing them with a cup of
+          coffee in hand ☕️
+        </p>
+      </section>
+      <hr />
+      <section id="projects">
+        <h2>Projects</h2>
+        <p>Still working on it...</p>
+      </section>
+      <hr />
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          email
+          <a href="mailto:chriswrendeveloper@gmail.com" target="_blank"
+            >chriswrendeveloper@gmail.com</a
+          >
+        </p>
+      </section>
+      <hr />
+      <button class="terminal-button" id="terminalButton">
+        <span class="prompt-symbol animate-blink">&gt;_</span> Open Terminal
+      </button>
+    </div>
+    <div id="terminal" style="display: none"></div>
+    <div id="command" class="mb-20" style="display: none">
+      <textarea type="text" id="textarea" class="offset" autofocus></textarea>
+      <div id="liner" class="animate-reveal">
+        <p class="font-semibold">
+          chriswren:~$ <span id="typer" class="font-normal"></span
+          ><b class="cursor animate-blink" id="cursor">█</b>
+        </p>
+      </div>
+    </div>
+    <script src="./scripts/commands.js"></script>
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>
