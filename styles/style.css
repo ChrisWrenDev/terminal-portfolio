@@ -13,6 +13,7 @@
   --transition-base: 0.3s ease;
 
   --page-width: 60em;
+  --input-style: solid;
 }
 
 [data-theme="light"] {
@@ -77,7 +78,7 @@ header {
   margin-bottom: calc(var(--spacing-base) * 10);
 }
 
-h2 {
+.section__heading {
   font-size: calc(var(--font-size-base) * 1.25);
 }
 
@@ -89,7 +90,8 @@ a {
   cursor: pointer;
   color: var(--primary-color);
   text-decoration: none;
-  transition: color var(--transition-base),
+  transition:
+    color var(--transition-base),
     background-color var(--transition-base);
 }
 
@@ -105,7 +107,7 @@ a:focus {
   background-color: var(--primary-color);
 }
 
-hr {
+.divider {
   position: relative;
   overflow: hidden;
   margin: calc(var(--spacing-base) * 20) 0;
@@ -223,7 +225,7 @@ hr {
   overflow: hidden;
 }
 
-.menu ul {
+.menu__list {
   display: flex;
   flex-direction: row;
   justify-items: flex-start;
@@ -232,25 +234,25 @@ hr {
   padding: 0;
 }
 
-.menu li {
+.menu__item {
   margin: 0;
   margin-right: calc(var(--spacing-base) * 10);
 }
 
 /* --- Toggle checkbox --- */
 
-.toggle-container {
+.toggle__container {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
-.toggle-checkbox {
+.toggle__checkbox {
   display: none;
 }
 
-.toggle-label {
+.toggle__label {
   width: 60px;
   height: 30px;
   background-color: #222225;
@@ -259,7 +261,7 @@ hr {
   transition: background-color 0.3s ease;
 }
 
-.toggle-label .toggle-inner {
+.toggle__label .toggle__inner {
   width: 26px;
   height: 26px;
   background-color: var(--primary-color);
@@ -269,16 +271,17 @@ hr {
   transition: transform 0.3s ease;
 }
 
-.toggle-checkbox:checked + .toggle-label {
+.toggle__checkbox:checked + .toggle__label {
   background-color: #fff;
 }
 
-.toggle-checkbox:checked + .toggle-label .toggle-inner {
+.toggle__checkbox:checked + .toggle__label .toggle__inner {
   transform: translateX(30px);
 }
 
 /* --- Terminal button --- */
-.terminal-button {
+
+.terminal__button {
   background-color: var(--button-bg);
   color: var(--button-text);
   border-color: var(--button-border);
@@ -291,13 +294,66 @@ hr {
   align-items: center;
 }
 
-.terminal-button .prompt-symbol {
+.terminal__button .prompt__symbol {
   margin-right: 10px;
   font-weight: bold;
 }
 
-.terminal-button:hover {
+.terminal__button:hover {
   background-color: var(--button-hover-bg);
   color: var(--button-hover-text);
   border-color: var(--button-hover-border);
+}
+
+/* --- Blog Post --- */
+
+.search {
+  order: 1px var(--input-style) var(--font-color);
+  width: 100%;
+  margin: calc(var(--spacing-base) * 10) 0;
+  padding: 0.7em 0.5em;
+  font-size: 1em;
+  font-family: var(--font-stack);
+  border-radius: 0;
+}
+
+.post {
+}
+
+.post__title {
+}
+
+.post__title-link {
+  color: var(--font-color);
+  margin-bottom: calc(var(--spacing-base) * 10);
+}
+
+.post__title-link:hover,
+.post__title-link:focus {
+  color: var(--primary-color);
+}
+
+.post__meta {
+  margin-bottom: calc(var(--spacing-base) * 10);
+}
+
+.post__data {
+}
+
+.post__tag {
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.post__tag:hover,
+.post__tag:focus {
+  background-color: var(--primary-color);
+  color: var(--invert-font-color);
+}
+
+.post__excerpt {
+  margin-bottom: calc(var(--spacing-base) * 10);
+}
+
+.post__read-more {
 }
