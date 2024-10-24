@@ -14,26 +14,26 @@
   </head>
   <body>
     <div id="content" class="content">
-      <header>
+      <header class="header">
         <nav id="menu" class="menu">
-          <ul>
-            <li>
-              <a href="/">Home</a>
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/" class="link">Home</a>
             </li>
-            <li>
-              <a href="/blog">Blog</a>
+            <li class="menu__item">
+              <a href="/blog" class="link">Blog</a>
             </li>
           </ul>
         </nav>
-        <div class="toggle-container">
-          <input type="checkbox" id="toggle" class="toggle-checkbox" />
-          <label for="toggle" class="toggle-label">
-            <div class="toggle-inner"></div>
+        <div class="toggle__container">
+          <input type="checkbox" id="toggle" class="toggle__checkbox" />
+          <label for="toggle" class="toggle__label">
+            <div class="toggle__inner"></div>
           </label>
         </div>
       </header>
-      <section id="about">
-        <h2>About</h2>
+      <section id="about" class="section">
+        <h2 class="section__heading">About</h2>
         <p>Hey, I'm Chris Wren!👋"</p>
         <p>
           I'm a Full Stack Engineer over at BT, working on the ee.co.uk website
@@ -52,24 +52,27 @@
           coffee in hand ☕️
         </p>
       </section>
-      <hr />
-      <section id="projects">
-        <h2>Projects</h2>
+      <hr class="divider" />
+      <section id="projects" class="section">
+        <h2 class="section__heading">Projects</h2>
         <p>Still working on it...</p>
       </section>
-      <hr />
-      <section id="contact">
-        <h2>Contact</h2>
+      <hr class="divider" />
+      <section id="contact" class="section">
+        <h2 class="section__heading">Contact</h2>
         <p>
           email
-          <a href="mailto:chriswrendeveloper@gmail.com" target="_blank"
+          <a
+            class="link"
+            href="mailto:chriswrendeveloper@gmail.com"
+            target="_blank"
             >chriswrendeveloper@gmail.com</a
           >
         </p>
       </section>
-      <hr />
-      <button class="terminal-button" id="terminalButton">
-        <span class="prompt-symbol animate-blink">&gt;_</span> Open Terminal
+      <hr class="divider" />
+      <button class="terminal__button" id="terminalButton">
+        <span class="prompt__symbol animate-blink">&gt;_</span> Open Terminal
       </button>
     </div>
     <div id="terminal" style="display: none"></div>

@@ -3,7 +3,7 @@ const path = require("path");
 const markdown = require("markdown-it")();
 
 const contentDir = path.join(__dirname, "../", "content");
-const postsDir = path.join(__dirname, "../", "blog", "posts");
+const postsDir = path.join(__dirname, "../", "blog");
 
 if (!fs.existsSync(postsDir)) {
   fs.mkdirSync(postsDir, { recursive: true });
@@ -20,14 +20,41 @@ fs.readdirSync(contentDir).forEach((file) => {
 
     const blogPostTemplate = `
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="en-GB" data-theme="light">
     <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>${postName}</title>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        media="screen"
+        href="../styles/style.css"
+      />
     </head>
     <body>
+    <div id="content" class="content">
+       <header class="header">
+        <nav id="menu" class="menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/" class="link">Home</a>
+            </li>
+            <li class="menu__item">
+              <a href="/blog" class="link">Blog</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="toggle__container">
+          <input type="checkbox" id="toggle" class="toggle__checkbox" />
+          <label for="toggle" class="toggle__label">
+            <div class="toggle__inner"></div>
+          </label>
+        </div>
+      </header>
       ${htmlContent}
+      </div>
     </body>
     </html>
     `;

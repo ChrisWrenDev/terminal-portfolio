@@ -207,9 +207,6 @@ function keyAction(key) {
   }
 }
 
-textarea.value = "";
-typer.innerHTML = textarea.value;
-
 window.onload = () => {
   html.setAttribute("data-theme", currentTheme);
   toggle.checked = currentTheme === "dark";
@@ -219,18 +216,28 @@ window.addEventListener("keyup", (event) => {
   keyAction(event.key);
 });
 
-command.addEventListener("click", () => {
-  textarea.focus();
-});
+if (command) {
+  command.addEventListener("click", () => {
+    textarea.focus();
+  });
+}
 
-textarea.addEventListener("input", () => {
-  updateTyper(textarea.value);
-});
+if (textarea) {
+  textarea.value = "";
+  typer.innerHTML = textarea.value;
+  textarea.addEventListener("input", () => {
+    updateTyper(textarea.value);
+  });
+}
 
-toggle.addEventListener("change", () => {
-  updateTheme();
-});
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    updateTheme();
+  });
+}
 
-terminalButton.addEventListener("click", () => {
-  toggleTerminal();
-});
+if (terminalButton) {
+  terminalButton.addEventListener("click", () => {
+    toggleTerminal();
+  });
+}

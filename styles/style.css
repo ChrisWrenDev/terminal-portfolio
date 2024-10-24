@@ -13,18 +13,19 @@
   --transition-base: 0.3s ease;
 
   --page-width: 60em;
+  --input-style: solid;
 }
 
 [data-theme="light"] {
   --secondary-color: #727578;
   --background-color: #fff;
-  --font-color: #151515;
+  --font-color: #222225;
   --invert-font-color: #fff;
-  --button-bg: #151515; /* Button background color */
+  --button-bg: #222225; /* Button background color */
   --button-text: #1a95e0; /* Button text color (green, terminal-style) */
   --button-border: #1a95e0; /* Button border color */
   --button-hover-bg: #1a95e0; /* Background color on hover */
-  --button-hover-text: #fffff; /* Text color on hover */
+  --button-hover-text: #ffffff; /* Text color on hover */
   --button-hover-border: #ffffff; /* Border color on hover */
 }
 
@@ -66,18 +67,18 @@ body {
   background: var(--background-color);
 }
 
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-section,
-header {
+.section,
+.header {
   margin-bottom: calc(var(--spacing-base) * 10);
 }
 
-h2 {
+.section__heading {
   font-size: calc(var(--font-size-base) * 1.25);
 }
 
@@ -85,7 +86,7 @@ textarea {
   font: inherit;
 }
 
-a {
+.link {
   cursor: pointer;
   color: var(--primary-color);
   text-decoration: none;
@@ -93,8 +94,8 @@ a {
     background-color var(--transition-base);
 }
 
-a:hover,
-a:focus {
+.link:hover,
+.link:focus {
   background-color: var(--primary-color);
   color: var(--invert-font-color);
   outline: none;
@@ -105,13 +106,168 @@ a:focus {
   background-color: var(--primary-color);
 }
 
-hr {
+.divider {
   position: relative;
   overflow: hidden;
   margin: calc(var(--spacing-base) * 20) 0;
   border: 0;
   border-bottom: 1px dashed var(--secondary-color);
 }
+
+.terminal-text {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+
+.cursor {
+  color: var(--primary-color);
+  background-color: var(--primary-color);
+  text-indent: -5px;
+  text-decoration: blink;
+  display: inline-block;
+  height: 18px;
+  width: 6px;
+  position: relative;
+  top: 4px;
+  overflow: hidden;
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+.menu__item {
+  margin: 0;
+  margin-right: calc(var(--spacing-base) * 10);
+}
+
+/* Toggle checkbox */
+
+.toggle__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.toggle__checkbox {
+  display: none;
+}
+
+.toggle__label {
+  width: 60px;
+  height: 30px;
+  background-color: #222225;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle__label .toggle__inner {
+  width: 26px;
+  height: 26px;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+.toggle__checkbox:checked + .toggle__label {
+  background-color: #fff;
+}
+
+.toggle__checkbox:checked + .toggle__label .toggle__inner {
+  transform: translateX(30px);
+}
+
+/* Terminal button */
+
+.terminal__button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border-color: var(--button-border);
+  padding: 12px 24px;
+  font-size: 18px;
+  font-family: "Courier New", Courier, monospace;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.terminal__button .prompt__symbol {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.terminal__button:hover {
+  background-color: var(--button-hover-bg);
+  color: var(--button-hover-text);
+  border-color: var(--button-hover-border);
+}
+
+/* Blog Post */
+
+.search {
+  order: 1px var(--input-style) var(--font-color);
+  width: 100%;
+  margin: calc(var(--spacing-base) * 10) 0;
+  padding: 0.7em 0.5em;
+  font-size: 1em;
+  font-family: var(--font-stack);
+  border-radius: 0;
+}
+
+.search:focus {
+  outline-color: var(--primary-color);
+}
+
+.post__title {
+  margin-bottom: calc(var(--spacing-base) * 10);
+}
+
+.post__title-link {
+  cursor: pointer;
+  color: var(--font-color);
+  text-decoration: none;
+  transition: color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.post__title-link:hover,
+.post__title-link:focus {
+  color: var(--primary-color);
+  outline: none;
+}
+
+.post__meta {
+  margin-bottom: calc(var(--spacing-base) * 10);
+}
+
+.post__tag {
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.post__tag:hover,
+.post__tag:focus {
+  background-color: var(--primary-color);
+  color: var(--invert-font-color);
+}
+
+.post__excerpt {
+  margin-bottom: calc(var(--spacing-base) * 10);
+}
+
+/* ---- UTILITIES ---- */
 
 /* Typography */
 
@@ -139,7 +295,7 @@ hr {
   font-weight: 600;
 }
 
-/* Utilities */
+/* Spacing */
 
 .ml-20 {
   margin-left: calc(var(--spacing-base) * 10);
@@ -201,103 +357,4 @@ hr {
   to {
     opacity: 1;
   }
-}
-
-.terminal-text {
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  overflow-wrap: break-word;
-}
-
-.cursor {
-  color: var(--primary-color);
-  background-color: var(--primary-color);
-  text-indent: -5px;
-  text-decoration: blink;
-  display: inline-block;
-  height: 18px;
-  width: 6px;
-  position: relative;
-  top: 4px;
-  overflow: hidden;
-}
-
-.menu ul {
-  display: flex;
-  flex-direction: row;
-  justify-items: flex-start;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-}
-
-.menu li {
-  margin: 0;
-  margin-right: calc(var(--spacing-base) * 10);
-}
-
-/* --- Toggle checkbox --- */
-
-.toggle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.toggle-checkbox {
-  display: none;
-}
-
-.toggle-label {
-  width: 60px;
-  height: 30px;
-  background-color: #222225;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.toggle-label .toggle-inner {
-  width: 26px;
-  height: 26px;
-  background-color: var(--primary-color);
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: transform 0.3s ease;
-}
-
-.toggle-checkbox:checked + .toggle-label {
-  background-color: #fff;
-}
-
-.toggle-checkbox:checked + .toggle-label .toggle-inner {
-  transform: translateX(30px);
-}
-
-/* --- Terminal button --- */
-.terminal-button {
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border-color: var(--button-border);
-  padding: 12px 24px;
-  font-size: 18px;
-  font-family: "Courier New", Courier, monospace;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-}
-
-.terminal-button .prompt-symbol {
-  margin-right: 10px;
-  font-weight: bold;
-}
-
-.terminal-button:hover {
-  background-color: var(--button-hover-bg);
-  color: var(--button-hover-text);
-  border-color: var(--button-hover-border);
 }
